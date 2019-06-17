@@ -36,7 +36,18 @@ class VisitorsTable extends Component {
     }
 
     componentDidMount() {
+
+        // Send request to log visitor
+        let host = process.env.REACT_APP_SERVICE_HOST || 'localhost'
+        let port = process.env.REACT_APP_SERVICE_PORT || '8000'
+        let url = 'http://' + host + ':' + port + '/visitors/'
+
+        fetch(url, {method: 'POST',})
+
+        // Initial load of the visitors list
         this.loadChanges()
+
+        // Repeat the visitors load
         setInterval(this.loadChanges, 1000)
     }
 
