@@ -4,10 +4,13 @@ import VisitorsTable from './VisitorsTable.js';
 
 class App extends Component {
   render() {
+
+    let title = process.env.REACT_APP_TITLE || 'Visitors Dashboard'
+
     return (
       <div className="container">
         <div className="page-header">
-          <h2>Visitors Dashboard</h2>
+          <h2>{title}</h2>
         </div>
         <div>
           <VisitorsTable/>
