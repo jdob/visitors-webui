@@ -11,11 +11,8 @@ class VisitorsTable extends Component {
     }
 
     loadChanges() {
-
-        // Send the requests back into the react app, where they will
-        // be proxied as configured in setupProxy.js
-        let host = process.env.REACT_APP_FRONTEND_HOST || 'localhost'
-        let port = process.env.REACT_APP_FRONTEND_PORT || '3000'
+        let host = process.env.REACT_APP_SERVICE_HOST || 'localhost'
+        let port = process.env.REACT_APP_SERVICE_PORT || '8000'
         let url = 'http://' + host + ':' + port + '/visitors/'
 
         fetch(url)
