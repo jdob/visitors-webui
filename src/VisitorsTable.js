@@ -10,10 +10,18 @@ class VisitorsTable extends Component {
         this.loadChanges = this.loadChanges.bind(this)
     }
 
-    loadChanges() {
-        let host = process.env.REACT_APP_SERVICE_HOST || 'localhost'
-        let port = process.env.REACT_APP_SERVICE_PORT || '8000'
+    generateUrl() {
+        var parser = document.createElement('a');
+        parser.href = window.location.href
+
+        let host = process.env.REACT_APP_BACKEND_HOST || parser.hostname
+        let port = process.env.REACT_APP_BACKEND_PORT || '30685'
         let url = 'http://' + host + ':' + port + '/visitors/'
+        return url
+    }
+
+    loadChanges() {
+        var url = this.generateUrl()
 
         fetch(url)
         .then(results => {
@@ -38,10 +46,7 @@ class VisitorsTable extends Component {
     componentDidMount() {
 
         // Send request to log visitor
-        let host = process.env.REACT_APP_SERVICE_HOST || 'localhost'
-        let port = process.env.REACT_APP_SERVICE_PORT || '8000'
-        let url = 'http://' + host + ':' + port + '/visitors/'
-
+        var url = this.generateUrl()
         fetch(url, {method: 'POST',})
 
         // Initial load of the visitors list
